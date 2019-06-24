@@ -1,72 +1,111 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+![logo](./public/images/logo.png)
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Informations
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+💪🏼 __Équipes__ : 
 
-## Learning Laravel
+- Alexandre Dorigny :  _Chef d'équipe_ / _Designer_ 
+- Pierre Ribault : _Développeur back-end & front-end_
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+💾 __Technologies__ :
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1400 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- Laravel
+- VueJS
+- Bootstrap
 
-## Laravel Sponsors
+🔗 __Liens utiles__ :
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+* Prod :  _Nom de domaine non acheté_ ⚠️
+* Qual : dev.feendy.fr  (__Temporaire__)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
+⚡️__À faire__ :
 
-## Contributing
+- [x] Réalisation du logo
+- [ ] Achat du nom de domaine
+- [ ] Réalisation des maquettes du site
+- [ ] Réalisation des maquettes du back-office admin
+- [ ] Réalisation des maquettes du back-office client
+- [ ] Réalisation de l'intégration
+- [ ] Réalisation du diagramme SQL
+- [ ] Réalisation du dev-back
+- [ ] Réalisation du back-office
+- [ ] Réalisation du back-client
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Installation en local
 
-## License
 
-The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Ce dépôt se déploie facilement en local par l'utilisation de lando.
+
+Pour installer lando je renvoie sur ces liens : 
+
+- Linux : https://docs.devwithlando.io/installation/linux.html
+- Mac : https://docs.devwithlando.io/installation/macos.html
+- Windows : https://docs.devwithlando.io/installation/windows.html
+
+
+Clonez ce dépôt là où vous le souhaitez.
+
+```sh
+$ cd ~
+$ git clone https://gogs.rib-server.fr/pribault/Stiud.git
+```
+
+
+
+Placez-vous dans le repertoire
+
+```sh
+$ cd ./Stiud
+```
+
+
+
+On initialise le site avec la suite de commande suivante
+
+```sh
+$ lando start
+$ lando composer install
+$ mv .env.example .env
+$ lando php artisan key:generate
+$ lando php artisan migrate
+```
+
+## Activer le HTTPS
+
+
+#### MACOS
+
+```bash
+# Add the Lando CA
+sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ~/.lando/certs/lndo.site.pem
+
+# Remove Lando CA
+sudo security delete-certificate -c "Lando Local CA"
+```
+
+#### WINDOWS
+
+```bash
+# Add the Lando CA
+certutil -addstore -f "ROOT" C:\Users\ME\.lando\certs\lndo.site.pem
+
+# Remove Lando CA
+certutil -delstore "ROOT" serial-number-hex
+```
+
+#### DEBIAN
+
+```bash
+# Add the Lando CA
+sudo cp -r ~/.lando/certs/lndo.site.pem /usr/local/share/ca-certificates/lndo.site.pem
+sudo update-ca-certificates
+
+# Remove Lando CA
+sudo rm -f /usr/local/share/ca-certificates/lndo.site.pem
+sudo update-ca-certificates --fresh
+```
