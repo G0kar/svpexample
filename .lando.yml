@@ -1,0 +1,24 @@
+name: svpexample
+recipe: laravel
+config:
+  webroot: public
+  xdebug: true
+  via: nginx
+  database: mariadb
+services:
+  pma:
+    type: phpmyadmin
+    overrides:
+      environment:
+        PMA_USER: mariadb
+        PMA_PASSWORD: mariadb
+  node:
+    type: node
+    build:
+      - npm install
+tooling:
+  npm:
+    service: node
+proxy:
+  pma:
+    - pma-svpexample.lndo.site
