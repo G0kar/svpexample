@@ -10,8 +10,8 @@ services:
     type: phpmyadmin
     overrides:
       environment:
-        PMA_USER: mariadb
-        PMA_PASSWORD: mariadb
+        PMA_USER: laravel
+        PMA_PASSWORD: laravel
   node:
     type: node
     build:
