@@ -1,39 +1,17 @@
-![logo](./public/images/logo.png)
-
-
-
 ## Informations
-
-
-💪🏼 __Équipes__ : 
-
-- Alexandre Dorigny :  _Chef d'équipe_ / _Designer_ 
-- Pierre Ribault : _Développeur back-end & front-end_
 
 💾 __Technologies__ :
 
 - Laravel
 - VueJS
 - Bootstrap
+- Lando
 
 🔗 __Liens utiles__ :
 
-* Prod :  _Nom de domaine non acheté_ ⚠️
-* Qual : dev.feendy.fr  (__Temporaire__)
-
-⚡️__À faire__ :
-
-- [x] Réalisation du logo
-- [ ] Achat du nom de domaine
-- [ ] Réalisation des maquettes du site
-- [ ] Réalisation des maquettes du back-office admin
-- [ ] Réalisation des maquettes du back-office client
-- [ ] Réalisation de l'intégration
-- [ ] Réalisation du diagramme SQL
-- [ ] Réalisation du dev-back
-- [ ] Réalisation du back-office
-- [ ] Réalisation du back-client
-
+- http://svpexample.lndo.site
+- http://pma-svpexample.lndo.site
+- http://mailhog-svpexample.lndo.site
 
 
 ## Installation en local
@@ -41,71 +19,116 @@
 
 Ce dépôt se déploie facilement en local par l'utilisation de lando.
 
-Pour installer lando je renvoie sur ces liens : 
 
-- Linux : https://docs.devwithlando.io/installation/linux.html
-- Mac : https://docs.devwithlando.io/installation/macos.html
-- Windows : https://docs.devwithlando.io/installation/windows.html
+##### 0) Pré-requis
+
+Mettre à jour votre distribution **Linux**.
+
+```sh
+$ sudo apt-get update
+$ sudo apt-get upgrade
+```
+
+Installer **Git**
+
+```sh
+$ sudo apt-get install git
+```
 
 
-Clonez ce dépôt là où vous le souhaitez.
+##### 1) Installation de Docker CE
+
+```sh
+$ sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
+```
+```sh
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+```
+
+```sh
+$ sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+```
+
+```sh
+$ sudo apt-get update
+```
+
+```sh
+$ sudo apt-get install docker-ce docker-ce-cli containerd.io
+```
+
+```sh
+$ newgrp docker
+$ sudo usermod -a -G docker $USER
+```
+
+##### 2) Installation de Lando
 
 ```sh
 $ cd ~
-$ git clone https://gogs.rib-server.fr/pribault/Stiud.git
+$ wget https://github.com/lando/lando/releases/download/v3.0.0-rc.17/lando-v3.0.0-rc.17.deb
+$ sudo apt install ./lando-v3.0.0-rc.17.deb
+$ rm ./lando-v3.0.0-rc.17.deb
 ```
 
-
-
-Placez-vous dans le repertoire
-
 ```sh
-$ cd ./Stiud
+$ sudo cp -r ~/.lando/certs/lndo.site.pem /usr/local/share/ca-certificates/lndo.site.pem
+$ sudo update-ca-certificates
 ```
 
-
-
-On initialise le site avec la suite de commande suivante
+##### 3) Téléchargement du dépôt
 
 ```sh
+$ cd ~
+$ mkdir Developpement
+$ cd ./Developpement
+$ git clone https://github.com/G0kar/svpexample.git
+```
+
+```sh
+$ cd ./svpexample
 $ lando start
 $ lando composer install
-$ mv .env.example .env
-$ lando php artisan key:generate
-$ lando php artisan migrate
+$ lando npm install
+$ cp .env.example .env
+$ lando artisan key:generate
+$ lando artisan migrate
 ```
 
-## Activer le HTTPS
+Les différents sites sont à présent fonctionnels 💪
 
 
-#### MACOS
+## Commandes de bases avec Lando
 
-```bash
-# Add the Lando CA
-sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ~/.lando/certs/lndo.site.pem
+⚠️ Il faut toujours se situer dans le répertoire du projet, ici **~/Developpement/svpexample/**
 
-# Remove Lando CA
-sudo security delete-certificate -c "Lando Local CA"
-```
+| Commande                | Description |
+| -------------- | ------------- |
+| lando composer          | Exécuter des commandes composer |
+| lando config            | Afficher la configuration lando |
+| lando destroy           | Détruit l'application (Pas les données) |
+| lando info              | Informations propres à l'application |
+| lando logs              | Afficher les logs de l'application |
+| lando npm               | Exécuter des commandes npm
+| lando php               | Exécuter des commandes php |
+| lando restart           | Redémarrer l'application |
+| lando ssh               | Accès SSH à l'application principale |
+| lando start             | Démarrer l'application |
+| lando stop              | Arrêter l'application |
+| lando version           | Affiche la version de lando |
 
-#### WINDOWS
 
-```bash
-# Add the Lando CA
-certutil -addstore -f "ROOT" C:\Users\ME\.lando\certs\lndo.site.pem
+## Commandes de bases avec Lando + Laravel
 
-# Remove Lando CA
-certutil -delstore "ROOT" serial-number-hex
-```
-
-#### DEBIAN
-
-```bash
-# Add the Lando CA
-sudo cp -r ~/.lando/certs/lndo.site.pem /usr/local/share/ca-certificates/lndo.site.pem
-sudo update-ca-certificates
-
-# Remove Lando CA
-sudo rm -f /usr/local/share/ca-certificates/lndo.site.pem
-sudo update-ca-certificates --fresh
-```
+| Commande                | Description |
+| -------------- | ------------- |
+| lando artisan  | Afficher la liste des commandes d'artisan |
+| lando npm run watch | Lance la compilation du Sass et du JS en direct |
