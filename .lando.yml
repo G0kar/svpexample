@@ -1,24 +1,31 @@
 name: svpexample
 recipe: laravel
 config:
+  php: '7.3'
   webroot: public
   xdebug: true
-  via: nginx
-  database: mariadb
+  via: nginx:1.14
+  database: mariadb:10.3
+  cache: redis:5
 services:
   pma:
-    type: phpmyadmin
+    type: phpmyadmin:4.7
     overrides:
       environment:
         PMA_USER: laravel
         PMA_PASSWORD: laravel
   node:
     type: node
-    build:
-      - npm install
+  mailhog:
+    type: mailhog:v1.0.0
+    portforward: true
+    hogfrom:
+      - appserver
 tooling:
   npm:
     service: node
 proxy:
   pma:
     - pma-svpexample.lndo.site
+  mailhog:
+    - mailhog-svpexample.lndo.site
