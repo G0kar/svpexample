@@ -7,6 +7,15 @@
 - Bootstrap
 - Lando
 
+- Php: 7.3
+- Nginx 1.14
+- Mariadb 10.3
+- Redis 5
+- Phpmyadmin 4.7
+- Mailhog 1.0.0
+
+- Php-cs-fixer
+    
 🔗 __Liens utiles__ :
 
 - http://svpexample.lndo.site
